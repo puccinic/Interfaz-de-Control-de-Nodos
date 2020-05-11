@@ -1,5 +1,3 @@
-/* import React from "react";
-import { MDBSpinner } from 'mdbreact'; */
 import Spinner from 'react-bootstrap/Spinner'
 
 function Loading(){
