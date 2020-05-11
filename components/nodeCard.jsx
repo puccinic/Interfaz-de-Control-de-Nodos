@@ -8,14 +8,10 @@ import ContactItem from './contactItem'
 
 function NodeCard(props) {
     const [newDir, setNewDir] = useState('')
-    const [newContact, setNewContact] = useState({
-        Name: '',
-        In: '',
-        Out: ''
-    })
+    const [newContact, setNewContact] = useState({})
 
     function changeDir() {
-        if (typeof newDir === 'number' && newDir % 1 === 0) {
+        if (typeof newDir === 'number' && newDir % 1 === 0 && newDir != 0) {
             props.change({ ...props.selected, dir: newDir })
         } else {
             alert('Ingrese una dirección valida')
