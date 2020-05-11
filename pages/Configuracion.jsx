@@ -1,3 +1,4 @@
+import { FaExclamationTriangle } from 'react-icons/fa';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -5,15 +6,14 @@ import Button from 'react-bootstrap/Button'
 import Title from '../components/title'
 import SelectList from '../components/selectList'
 import NodeCard from '../components/nodeCard'
+import Loading from '../components/loading'
 import {useNodesData} from '../customHooks'
 
 
 function ConfigPage() {
     const [nodesData, sNode, setNodesData, setSNode] = useNodesData()
 
-    if (!nodesData) {
-        return <h1>Cargando Datos...</h1>
-    }
+    if (!nodesData) return <Loading/>
 
     const nodesIDs = nodesData.map(e => e.id)
 
@@ -64,17 +64,20 @@ function ConfigPage() {
 
     return <Container>
         <Row>
-            <Col>
+            <Col lg>
                 <Title />
-                <br />
+                <div className="divsize">
+                </div>
                 <SelectList list={nodesIDs} select={setSNode} />
+                <Row>
+                    <Button className="mx-auto " variant="danger" onClick={save}>
+                        Guardar Cambios <FaExclamationTriangle className="iconosmar"/>
+                    </Button>
+                </Row>
             </Col>
-            <Col>
+            <Col lg>
                 <NodeCard selected={nodesData.find(e => e.id === sNode)} change={change} update={updateContactsList} />
             </Col>
-        </Row>
-        <Row>
-            <Button onClick={save}>Guardar Cambios</Button>
         </Row>
     </Container>
 }

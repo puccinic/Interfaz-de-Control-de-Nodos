@@ -50,23 +50,23 @@ function NodeCard(props) {
         }
     }
 
-    return <Card>
+    return <Card className="cardstyle">
         <Card.Body>
-            <Card.Title>Nodo {props.selected.id}</Card.Title>
-            <Card.Text>Dirección {props.selected.dir} </Card.Text>
+            <Card.Title className="titulo-r">Nodo {props.selected.id}</Card.Title>
+            <Card.Text className="subtitulo-r">Dirección {props.selected.dir} </Card.Text>
         </Card.Body>
         <Form>
             <Form.Row>
-                <Col>
+                <Col className="ml-3">
                     <Form.Control placeholder="Nueva dirección" onChange={e => setNewDir(Number(e.target.value))} />
                 </Col>
                 <Col>
-                    <Button variant="primary" onClick={changeDir} > {props.selected.dir ? 'Cambiar Dirección' : 'Nueva Direccion'} </Button>
+                    <Button className="buttondir mx-auto " variant="dark" onClick={changeDir}> {props.selected.dir ? 'Cambiar Dirección' : 'Nueva Dirección'} </Button>
                 </Col>
             </Form.Row>
         </Form>
         <Card.Body>
-            <Card.Title>Contactores</Card.Title>
+            <Card.Title className="titulo-r">Contactores</Card.Title>
             <ListGroup>
                 {
                     props.selected.contacts.map(
@@ -88,9 +88,20 @@ function NodeCard(props) {
                 <Col>
                     <Form.Control placeholder="Salida"   onChange=
                         {e => updateNewContact({ Out: e.target.value})} />
+                <Col className="mr-2 ml-4">
+                    <Form.Control placeholder="Nombre" onChange=
+                        {e => updateNewContact({ Name: e.target.value })} />
                 </Col>
-                <Col>
-                    <Button variant="primary" onClick={addContact}>Añadir Contactor</Button>
+                <Col className="mr-2 ml-3">
+                    <Form.Control placeholder="Entrada" onChange=
+                        {e => updateNewContact({ In: e.target.value })} />
+                </Col>
+                <Col className="mr-2 ml-3">
+                    <Form.Control placeholder="Salida" onChange=
+                        {e => updateNewContact({ Out: e.target.value })} />
+                </Col>
+                <Col className="mr-2 plusbuttoncont">
+                    <Button className="float-right" variant="dark" onClick={addContact}>+</Button>
                 </Col>
             </Form.Row>
         </Form>

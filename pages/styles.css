@@ -1,0 +1,121 @@
+/* Importando los google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,400;1,900&display=swap');
+body{
+    background-color: #282a2b;
+}
+
+.titulo{
+    margin: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.subtitulo{
+    margin: 10px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.groupcont{
+    margin: 20px 20px 20px 10px;
+}
+
+.titulo-r{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.subtitulo-r{
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.cardstyle{
+    margin: 127px 20px 20px 20px;
+    padding: 20px;
+}
+
+.buttondir{
+    float: right;
+}
+
+.textolista{
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+}
+
+.iconosmar{
+    margin-bottom: 2px;
+    margin-left: 7px;
+}
+
+.iconostitmar{
+    margin-bottom: 7px;
+    margin-left: 2px;
+}
+
+.divsize{
+    height: 20px;
+}
+
+.plusbuttoncont{
+    margin-right: 0 !important;
+}
+
+.loadingh1{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-top: 15%;
+    margin-bottom: 40px;
+    color: white;
+    text-align: center;
+}
+
+.loadingspinner{
+    height: 10rem;
+    width: 10rem;
+}
+
+/* Media Query*/
+
+/* Si el Viewport es de 991px o menor... haga*/
+@media (max-width: 991px) {
+    .groupcont{
+      margin: 20px;
+    }
+    .cardstyle{
+        margin: 20px;
+    }
+}
+
+/* Si el Viewport es de 572px o menor... haga*/
+@media (max-width: 572px){
+    .textolista{
+        font-size: 2.5vw;
+    }
+}
+
+/* Si el Viewport es de 523px o menor... haga*/
+@media (max-width: 523px){
+    .divsize{
+        height: 0;
+    }
+}
+
+/* Si el Viewport está entre 1200px o 992px... haga*/
+@media (max-width: 1200px) and (min-width: 992px){
+    .divsize{
+        height: 0;
+    }
+    .cardstyle{
+        margin: 145px 20px 20px 20px;
+    }
+}
+
+  
+
