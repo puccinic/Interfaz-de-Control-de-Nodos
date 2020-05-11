@@ -3,8 +3,8 @@ import Form from 'react-bootstrap/Form'
 function SelectList(props) {
 
     return <Form>
-        <Form.Group controlId="SelectNode">
-            <Form.Label>Seleccionar Nodo</Form.Label>
+        <Form.Group className="groupcont"controlId="SelectNode">
+            <Form.Label className="subtitulo">Seleccionar Nodo</Form.Label>
             <Form.Control as="select" custom onChange={e => props.select(Number(e.target.value))}>
                 {
                     props.list.map(
