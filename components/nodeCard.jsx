@@ -28,8 +28,11 @@ function NodeCard(props) {
     }
 
     function addContact() {
-        const { In, Out } = newContact
-        if (In % 1 === 0 && Out % 1 === 0) {
+        const { In, Out, Name } = newContact
+        console.log(In,Out,Name)
+        const isEmpty = Name === '' || In === '' || Out === ''
+        console.log(isEmpty)
+        if (In % 1 === 0 && Out % 1 === 0 && !isEmpty) {
             if (props.selected.contacts.find(e => e.Name === newContact.Name)) {
                 alert('Este contactor ya existe')
             } else {
@@ -75,16 +78,16 @@ function NodeCard(props) {
         <Form>
             <Form.Row>
                 <Col>
-                    <Form.Control placeholder="Nombre" onChange=
+                    <Form.Control placeholder="Nombre"  onChange=
                         {e => updateNewContact({ Name: e.target.value })} />
                 </Col>
                 <Col>
-                    <Form.Control placeholder="Entrada" onChange=
-                        {e => updateNewContact({ In: e.target.value })} />
+                    <Form.Control placeholder="Entrada"  onChange=
+                        {e => updateNewContact({ In: e.target.value})} />
                 </Col>
                 <Col>
-                    <Form.Control placeholder="Salida" onChange=
-                        {e => updateNewContact({ Out: e.target.value })} />
+                    <Form.Control placeholder="Salida"   onChange=
+                        {e => updateNewContact({ Out: e.target.value})} />
                 </Col>
                 <Col>
                     <Button variant="primary" onClick={addContact}>Añadir Contactor</Button>
