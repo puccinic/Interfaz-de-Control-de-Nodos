@@ -67,9 +67,18 @@ body{
     margin-right: 0 !important;
 }
 
+.loadingh1{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-top: 15%;
+    margin-bottom: 40px;
+    color: white;
+    text-align: center;
+}
+
 .loadingspinner{
-    height: 3rem;
-    width: 3rem;
+    height: 10rem;
+    width: 10rem;
 }
 
 /* Media Query*/
