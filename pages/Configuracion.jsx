@@ -13,10 +13,6 @@ import {useNodesData} from '../customHooks'
 function ConfigPage() {
     const [nodesData, sNode, setNodesData, setSNode] = useNodesData()
 
-    if (!nodesData) return <Loading/>
-
-    const nodesIDs = nodesData.map(e => e.id)
-
     function change(obj) {
         if (nodesData.find(e => e.dir === obj.dir)) {
             alert("Esta dirección se encuentra ocupada")
@@ -61,6 +57,10 @@ function ConfigPage() {
             console.log(error)
         }
     }
+
+    if (!nodesData) return <Loading/>
+
+    const nodesIDs = nodesData.map(e => e.id)
 
     return <Container>
         <Row>

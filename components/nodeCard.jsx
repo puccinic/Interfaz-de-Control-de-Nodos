@@ -20,7 +20,7 @@ function NodeCard(props) {
 
     function deleteContact(obj) {
         const newContactList = props.selected.contacts.filter(e => e != obj)
-        props.update({...props.selected, contacts: newContactList})
+        props.update({ ...props.selected, contacts: newContactList })
 
     }
     function updateNewContact(obj) {
@@ -29,9 +29,7 @@ function NodeCard(props) {
 
     function addContact() {
         const { In, Out, Name } = newContact
-        console.log(In,Out,Name)
         const isEmpty = Name === '' || In === '' || Out === ''
-        console.log(isEmpty)
         if (In % 1 === 0 && Out % 1 === 0 && !isEmpty) {
             if (props.selected.contacts.find(e => e.Name === newContact.Name)) {
                 alert('Este contactor ya existe')
@@ -70,39 +68,28 @@ function NodeCard(props) {
             <ListGroup>
                 {
                     props.selected.contacts.map(
-                        (item, index) => <ContactItem key={index} contact={item} del={deleteContact}/> 
+                        (item, index) => <ContactItem key={index} contact={item} del={deleteContact} />
                     )
                 }
             </ListGroup>
         </Card.Body>
         <Form>
             <Form.Row>
-                <Col>
-                    <Form.Control placeholder="Nombre"  onChange=
-                        {e => updateNewContact({ Name: e.target.value })} />
-                </Col>
-                <Col>
-                    <Form.Control placeholder="Entrada"  onChange=
-                        {e => updateNewContact({ In: e.target.value})} />
-                </Col>
-                <Col>
-                    <Form.Control placeholder="Salida"   onChange=
-                        {e => updateNewContact({ Out: e.target.value})} />
-                <Col className="mr-2 ml-4">
-                    <Form.Control placeholder="Nombre" onChange=
-                        {e => updateNewContact({ Name: e.target.value })} />
-                </Col>
-                <Col className="mr-2 ml-3">
-                    <Form.Control placeholder="Entrada" onChange=
-                        {e => updateNewContact({ In: e.target.value })} />
-                </Col>
-                <Col className="mr-2 ml-3">
-                    <Form.Control placeholder="Salida" onChange=
-                        {e => updateNewContact({ Out: e.target.value })} />
-                </Col>
-                <Col className="mr-2 plusbuttoncont">
-                    <Button className="float-right" variant="dark" onClick={addContact}>+</Button>
-                </Col>
+                    <Col className="mr-2 ml-4">
+                        <Form.Control placeholder="Nombre" onChange=
+                            {e => updateNewContact({ Name: e.target.value })} />
+                    </Col>
+                    <Col className="mr-2 ml-3">
+                        <Form.Control placeholder="Entrada" onChange=
+                            {e => updateNewContact({ In: e.target.value })} />
+                    </Col>
+                    <Col className="mr-2 ml-3">
+                        <Form.Control placeholder="Salida" onChange=
+                            {e => updateNewContact({ Out: e.target.value })} />
+                    </Col>
+                    <Col className="mr-2 plusbuttoncont">
+                        <Button className="float-right" variant="dark" onClick={addContact}>+</Button>
+                    </Col>
             </Form.Row>
         </Form>
     </Card>
