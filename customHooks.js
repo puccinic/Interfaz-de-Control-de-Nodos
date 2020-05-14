@@ -1,7 +1,7 @@
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
 
-function useNodesData(){
+function useNodesData() {
     const [nodesData, setNodesData] = useState(undefined)
     const [sNode, setSNode] = useState(632)
     useEffect(() => {
@@ -19,8 +19,39 @@ function useNodesData(){
         fetchData()
     }, [])
 
-    return [nodesData,sNode,setNodesData,setSNode]
+    return [nodesData, sNode, setNodesData, setSNode]
 }
 
 
-export {useNodesData}
+function useNodeData(node) {
+    const [nodeData, setNodeData] = useState(undefined)
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:4000/ControlNodo?' + new URLSearchParams({ id: node }))
+
+                if (!response.ok) throw new Error('Algo salio mal')
+
+                const data = await response.json()
+
+                if (data.message) throw new Error(data.message)
+                setNodeData(data)
+
+            } catch (error) {
+                console.log('Error: ', error)
+            }
+        }
+        
+        const timer = setInterval(() => {
+            fetchData()
+        }, 1000);
+        // clearing interval
+        return () => clearInterval(timer);
+
+    }, [])
+
+    return [nodeData, setNodeData]
+}
+
+
+export { useNodesData, useNodeData }

@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Fragment } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Loading from '../components/loading'
-import { useNodesData } from '../customHooks'
+import { useNodesData, useNodeData } from '../customHooks'
 import { FaToggleOff } from 'react-icons/fa'
 
 function ControlPage() {
@@ -21,13 +21,9 @@ function ControlPage() {
         <Modal show={modalVisible} onHide={() => setModalVisible(false)} size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered>
-            <Modal.Header closeButton>
-                <Modal.Title>Nodo {sNode}</Modal.Title>
-                <Modal.Body>
-                    <ContactList items={nodesData.find(e => e.id === sNode)} />
-                </Modal.Body>
-            </Modal.Header>
+            <NodeModal id={sNode} />
         </Modal>
+
     </div>
 }
 
@@ -43,6 +39,42 @@ function ButtonList({ items, action }) {
     return <div>
         {buttons}
     </div>
+}
+
+function NodeModal({ id }) {
+
+    const [nodeData, setNodeData] = useNodeData(id)
+
+    if (!nodeData) {
+        return <Modal.Body> <Loading /> </Modal.Body>
+    }
+    return <Fragment>
+        <Modal.Header closeButton>
+            <Modal.Title>Nodo {nodeData.id}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <ContactList items={nodeData} />
+            <Button onClick={async () => {
+                try {
+                    const response = await fetch('http://localhost:4000/Emergencia',
+                        {
+                            method: 'POST',
+                            body: JSON.stringify({ id: id }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+
+                    if (!response.ok) throw new Error("Algo salio mal")
+
+                    setToggle(!toggle)
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }}>Emergencia</Button>
+        </Modal.Body>
+    </Fragment>
 }
 
 function ContactList({ items }) {
@@ -66,7 +98,7 @@ function Contact(props) {
             const response = await fetch('http://localhost:4000/ControlNodo',
                 {
                     method: 'POST',
-                    body: JSON.stringify({...props, value: toggle}),
+                    body: JSON.stringify({ ...props, value: toggle }),
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -74,16 +106,14 @@ function Contact(props) {
 
             if (!response.ok) throw new Error("Algo salio mal")
 
-            const data = await response.json()
-            console.log(data)
             setToggle(!toggle)
+
         } catch (error) {
             console.log(error)
         }
     }
-
     return <div>
-        <h3>{props.Name}</h3>
+        <h3>{props.Name}{props.value ? 'true' : 'false'}</h3>
         <Button onClick={action}>accionar</Button>
     </div>
 }
