@@ -2,29 +2,35 @@ import { useState, useEffect } from 'react'
 import { Fragment } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import { FaToggleOff, FaCogs } from 'react-icons/fa'
+import Container from 'react-bootstrap/Container'
+import Navbarmain from '../components/navbar'
 import Loading from '../components/loading'
 import { useNodesData, useNodeData } from '../customHooks'
-import { FaToggleOff } from 'react-icons/fa'
+
 
 function ControlPage() {
     const [modalVisible, setModalVisible] = useState(false)
     const [nodesData, sNode, setNodesData, setSNode] = useNodesData()
     if (!nodesData) {
-        return <Loading />
+        return <Loading/>
     }
-
-    return <div>
-        <ButtonList items={nodesData} action={id => {
-            setSNode(id)
-            setModalVisible(true)
-        }} />
-        <Modal show={modalVisible} onHide={() => setModalVisible(false)} size="lg"
+    return <Container>
+        <Navbarmain dir="Configuracion" text="Configuración de nodos">
+            <FaCogs className="iconoconf"/>
+        </Navbarmain>
+        <div>
+            <ButtonList items={nodesData} action={id => {
+                setSNode(id)
+                setModalVisible(true)
+            }} />
+            <Modal show={modalVisible} onHide={() => setModalVisible(false)} size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered>
             <NodeModal id={sNode} />
         </Modal>
-
-    </div>
+        </div>
+</Container>
 }
 
 function ButtonList({ items, action }) {
