@@ -1,4 +1,4 @@
-import { FaExclamationTriangle } from 'react-icons/fa';
+import { FaExclamationTriangle, FaDoorOpen } from 'react-icons/fa'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -8,6 +8,7 @@ import SelectList from '../components/selectList'
 import NodeCard from '../components/nodeCard'
 import Loading from '../components/loading'
 import {useNodesData} from '../customHooks'
+import Navbarmain from '../components/navbar'
 
 
 function ConfigPage() {
@@ -63,6 +64,9 @@ function ConfigPage() {
     const nodesIDs = nodesData.map(e => e.id)
 
     return <Container>
+        <Navbarmain dir="Control" text="Volver">
+            <FaDoorOpen className="iconovolver"/>
+        </Navbarmain>
         <Row>
             <Col lg>
                 <Title />
@@ -78,6 +82,9 @@ function ConfigPage() {
             <Col lg>
                 <NodeCard selected={nodesData.find(e => e.id === sNode)} change={change} update={updateContactsList} />
             </Col>
+        </Row>
+        <Row>
+
         </Row>
     </Container>
 }

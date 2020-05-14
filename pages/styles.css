@@ -1,5 +1,6 @@
 /* Importando los google fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,400;1,900&display=swap');
+
 body{
     background-color: #282a2b;
 }
@@ -86,10 +87,14 @@ body{
 /* Si el Viewport es de 991px o menor... haga*/
 @media (max-width: 991px) {
     .groupcont{
-      margin: 20px;
+        margin: 20px;
     }
     .cardstyle{
         margin: 20px;
+    }
+    .centradoNavLink{
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -117,5 +122,45 @@ body{
     }
 }
 
-  
+/* Conf. Navbar Style */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: white;
+}
 
+.navbar-custom .navbar-nav .nav-link {
+    color: #969292;
+}
+
+.navbar-brand{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.icononavbar{
+    margin-bottom: 6px;
+    margin-right: 7px;
+}
+
+.iconovolver{
+    margin-bottom: 5px;
+}
+
+.iconoconf{
+    margin-bottom: 3px;
+}
+
+.navbarbrand:hover{
+    color: white !important;
+}
+
+.nav-link:hover{
+    color: white !important;
+    
+}
+
+.navbar-toggle{
+    color: white;
+}
+
+/* Fin Conf. Navbar Style */
