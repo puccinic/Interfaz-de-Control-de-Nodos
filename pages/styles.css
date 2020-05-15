@@ -164,3 +164,98 @@ body{
 }
 
 /* Fin Conf. Navbar Style */
+
+/* Control Styles */
+.imagenprincipal{
+    border-radius: 8px;
+    width: 1110px;
+    height: 828.6311px;
+}
+
+.contenedor{
+    position: relative;
+}
+
+.btn-nodo-vertical{
+    display: inline-block;
+    position: absolute;
+    text-align: center;
+    font-size: 0.7rem;
+    padding: 0;
+    height: 72px;
+    width: 21px;
+    font-weight: 700;
+    border: 2px solid black;
+}
+
+.btn-nodo-horizontal{
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    font-size: 0.7rem;
+    padding: 0;
+    height: 21px;
+    width: 72px;
+    font-weight: 700;
+    border: 2px solid black;
+}
+
+.Nodo611 {
+    left: 224px;
+    top: 640px;
+}
+
+.Nodo652{
+    left: 140px;
+    top: 498px;
+}
+
+.Nodo684{
+    left: 333px;
+    top: 517px;
+}
+
+.Nodo645{
+    left: 273px;
+    top: 163px;
+}
+
+.Nodo646{
+    left: 60px;
+    top: 163px;
+}
+
+.Nodo632{
+    left: 488px;
+    top: 40px;
+}
+
+.Nodo633{
+    left: 794px;
+    top: 161px;
+}
+
+.Nodo634{
+    left: 980px;
+    top: 161px;
+}
+
+.Nodo675{
+    left: 970px;
+    top: 519px;
+}
+
+.Nodo692{
+    left: 741px;
+    top: 518px;
+}
+
+.Nodo671{
+    left: 540px;
+    bottom: 471px;
+}
+
+.Nodo680{
+    left: 470px;
+    bottom: 114px;
+}

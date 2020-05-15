@@ -1,50 +1,50 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Fragment } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import { FaToggleOff, FaCogs } from 'react-icons/fa'
+import { FaCogs } from 'react-icons/fa'
 import Container from 'react-bootstrap/Container'
 import Navbarmain from '../components/navbar'
 import Loading from '../components/loading'
-import { useNodesData, useNodeData } from '../customHooks'
+import { useNodeData } from '../customHooks'
+import Buttonsc from '../components/boton'
 
 
 function ControlPage() {
     const [modalVisible, setModalVisible] = useState(false)
-    const [nodesData, sNode, setNodesData, setSNode] = useNodesData()
-    if (!nodesData) {
-        return <Loading/>
-    }
     return <Container>
         <Navbarmain dir="Configuracion" text="Configuración de nodos">
             <FaCogs className="iconoconf"/>
         </Navbarmain>
+        <div className="contenedor">
+
+            <img src="/UniGRID_Diagram.png" alt="UniGRID-Diagram" className="imagenprincipal" />
+
+            {/* Principio componente */}
+            <Buttonsc orientacion="false" text="C" nodo="Nodo611"/>
+            <Buttonsc orientacion="false" text="A" nodo="Nodo652"/>
+            <Buttonsc orientacion="false" text="A C" nodo="Nodo684"/>
+            <Buttonsc orientacion="false" text="B C" nodo="Nodo645"/>
+            <Buttonsc orientacion="false" text="B C" nodo="Nodo646"/>
+            <Buttonsc orientacion="false" text="A B C" nodo="Nodo632"/>
+            <Buttonsc orientacion="false" text="A B C" nodo="Nodo633"/>
+            <Buttonsc orientacion="false" text="A B C" nodo="Nodo634"/>
+            <Buttonsc orientacion="false" text="A B C" nodo="Nodo675"/>
+            <Buttonsc orientacion="false" text="A B C" nodo="Nodo692"/>
+            <Buttonsc orientacion="true" text="A B C" nodo="Nodo671"/>
+            <Buttonsc orientacion="true" text="A B C" nodo="Nodo680"/>
+            {/* Final componente */}
+
+
+        </div>
         <div>
-            <ButtonList items={nodesData} action={id => {
-                setSNode(id)
-                setModalVisible(true)
-            }} />
-            <Modal show={modalVisible} onHide={() => setModalVisible(false)} size="lg"
+        <Modal show={modalVisible} onHide={() => setModalVisible(false)} size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered>
-            <NodeModal id={sNode} />
+        <NodeModal id={632} />
         </Modal>
         </div>
 </Container>
-}
-
-function ButtonList({ items, action }) {
-
-    const buttons = items.map((item, cols) => {
-        const button = <Button key={cols} onClick={() => action(item.id)} >Nodo {item.id} </Button>
-        if (cols % 3 || cols === 0) {
-            return button
-        }
-        return <Fragment key={cols}> <br /> {button}</Fragment>
-    })
-    return <div>
-        {buttons}
-    </div>
 }
 
 function NodeModal({ id }) {
