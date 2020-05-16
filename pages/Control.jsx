@@ -79,9 +79,6 @@ function NodeModal({ id }) {
                         })
 
                     if (!response.ok) throw new Error("Algo salio mal")
-
-                    setToggle(!toggle)
-
                 } catch (error) {
                     console.log(error)
                 }
