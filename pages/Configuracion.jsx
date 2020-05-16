@@ -59,7 +59,7 @@ function ConfigPage() {
         }
     }
 
-    if (!nodesData) return <Loading/>
+    if (!nodesData) return <Loading textcolor="true" color="light"/>
 
     const nodesIDs = nodesData.map(e => e.id)
 

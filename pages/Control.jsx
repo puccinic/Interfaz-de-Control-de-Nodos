@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { Fragment } from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import { FaCogs } from 'react-icons/fa'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { FaCogs, FaExclamationTriangle } from 'react-icons/fa'
 import Container from 'react-bootstrap/Container'
 import Navbarmain from '../components/navbar'
 import Loading from '../components/loading'
@@ -24,10 +26,7 @@ function ControlPage() {
             <FaCogs className="iconoconf"/>
         </Navbarmain>
         <div className="contenedor">
-
             <img src="/UniGRID_Diagram.png" alt="UniGRID-Diagram" className="imagenprincipal" />
-
-            {/* Principio componente */}
             <Buttonsc orientacion="false" text="C" nodo="Nodo611" action={()=> action(611)}/>
             <Buttonsc orientacion="false" text="A" nodo="Nodo652" action={()=> action(652)}/>
             <Buttonsc orientacion="false" text="A C" nodo="Nodo684" action={()=> action(684)}/>
@@ -40,9 +39,6 @@ function ControlPage() {
             <Buttonsc orientacion="false" text="A B C" nodo="Nodo692" action={()=> action(692)}/>
             <Buttonsc orientacion="true" text="A B C" nodo="Nodo671" action={()=> action(671)}/>
             <Buttonsc orientacion="true" text="A B C" nodo="Nodo680" action={()=> action(680)}/>
-            {/* Final componente */}
-
-
         </div>
         <div>
         <Modal show={modalVisible} onHide={() => setModalVisible(false)} size="lg"
@@ -59,30 +55,33 @@ function NodeModal({ id }) {
     const [nodeData, setNodeData] = useNodeData(id)
 
     if (!nodeData) {
-        return <Modal.Body> <Loading /> </Modal.Body>
+        return <Modal.Body> <Loading textcolor="false" color="dark"/> </Modal.Body>
     }
     return <Fragment>
         <Modal.Header closeButton>
-            <Modal.Title>Nodo {nodeData.id}</Modal.Title>
+            <Modal.Title className="w-100 text-center">Nodo {nodeData.id}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <ContactList items={nodeData} />
-            <Button onClick={async () => {
-                try {
-                    const response = await fetch('http://localhost:4000/Emergencia',
-                        {
-                            method: 'POST',
-                            body: JSON.stringify({ id: id }),
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        })
+            <Row>
+                <Button className="mx-auto rowemerbutton" variant="danger"onClick={async () => {
+                    try {
+                        const response = await fetch('http://localhost:4000/Emergencia',
+                            {
+                                method: 'POST',
+                                body: JSON.stringify({ id: id }),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            })
 
-                    if (!response.ok) throw new Error("Algo salio mal")
-                } catch (error) {
-                    console.log(error)
-                }
-            }}>Emergencia</Button>
+                        if (!response.ok) throw new Error("Algo salio mal")
+
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }}><FaExclamationTriangle className="iconosalerta"/>¡EMERGENCIA!<FaExclamationTriangle className="iconosalerta"/></Button>
+            </Row>
         </Modal.Body>
     </Fragment>
 }
@@ -95,9 +94,9 @@ function ContactList({ items }) {
         }
         return <Fragment key={cols}> <br /> {contact}</Fragment>
     })
-    return <div>
+    return <Row>
         {contacts}
-    </div>
+    </Row>
 }
 
 function Contact(props) {
@@ -122,10 +121,13 @@ function Contact(props) {
             console.log(error)
         }
     }
-    return <div>
-        <h3>{props.Name}{props.value ? 'true' : 'false'}</h3>
-        <Button onClick={action}>accionar</Button>
-    </div>
+    return <Col  xs="6" sm="6" md="6" lg="4" className="text-center">
+        <div className="contactorimagediv">
+            <img src="/Contactor.png" alt="imagen-contactor" className="imagencontactor"/>
+            <button className={((props.value == true) ? "buttongreen " : "buttonred ") + "round-button"} onClick={action}/>
+        </div>
+        <h3 className="contactorname">{props.Name}</h3>
+    </Col>
 }
 
 export default ControlPage
