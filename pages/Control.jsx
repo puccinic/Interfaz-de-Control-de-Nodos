@@ -52,10 +52,12 @@ function ControlPage() {
 
 function NodeModal({ id }) {
 
-    const [nodeData, setNodeData] = useNodeData(id)
+    const [nodeData, errorMessage] = useNodeData(id)
 
-    if (!nodeData) {
+    if (!nodeData && !errorMessage) {
         return <Modal.Body> <Loading textcolor="false" color="dark"/> </Modal.Body>
+    } else if(errorMessage){
+        return <Modal.Body> {errorMessage} </Modal.Body>
     }
     return <Fragment>
         <Modal.Header closeButton>
@@ -100,22 +102,19 @@ function ContactList({ items }) {
 }
 
 function Contact(props) {
-    const [toggle, setToggle] = useState(true)
 
     async function action() {
         try {
             const response = await fetch('http://localhost:4000/ControlNodo',
                 {
                     method: 'POST',
-                    body: JSON.stringify({ ...props, value: toggle }),
+                    body: JSON.stringify({ ...props, value: !props.value }),
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
 
             if (!response.ok) throw new Error("Algo salio mal")
-
-            setToggle(!toggle)
 
         } catch (error) {
             console.log(error)
@@ -126,7 +125,7 @@ function Contact(props) {
             <img src="/Contactor.png" alt="imagen-contactor" className="imagencontactor"/>
             <button className={((props.value == true) ? "buttongreen " : "buttonred ") + "round-button"} onClick={action}/>
         </div>
-        <h3 className="contactorname">{props.Name}</h3>
+<h3 className="contactorname">{props.Name} {props.value}</h3>
     </Col>
 }
 

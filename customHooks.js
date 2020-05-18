@@ -25,6 +25,8 @@ function useNodesData() {
 
 function useNodeData(node) {
     const [nodeData, setNodeData] = useState(undefined)
+    const [errorMessage, setErrorMessage] = useState(undefined)
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -38,20 +40,19 @@ function useNodeData(node) {
                 setNodeData(data)
 
             } catch (error) {
-                console.log('Error: ', error)
+                console.log(error)
+                setErrorMessage(error.message)
             }
         }
-        
         const timer = setInterval(() => {
             fetchData()
-        }, 1000);
-        // clearing interval
-        return () => clearInterval(timer);
+        }, 5000)
+        return () => clearInterval(timer)
 
     }, [])
 
-    return [nodeData, setNodeData]
+    return [nodeData, errorMessage]
 }
 
 
-export { useNodesData, useNodeData }
+export { useNodesData, useNodeData}
