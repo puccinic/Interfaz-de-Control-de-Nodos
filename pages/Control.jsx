@@ -10,6 +10,7 @@ import Navbarmain from '../components/navbar'
 import Loading from '../components/loading'
 import { useNodeData } from '../customHooks'
 import Buttonsc from '../components/boton'
+import Head from 'next/head'
 
 
 function ControlPage() {
@@ -22,6 +23,10 @@ function ControlPage() {
     }
 
     return <Container>
+        <Head>
+            <title>UniGRID: Control de nodos</title>
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
         <Navbarmain dir="Configuracion" text="Configuración de nodos">
             <FaCogs className="iconoconf"/>
         </Navbarmain>

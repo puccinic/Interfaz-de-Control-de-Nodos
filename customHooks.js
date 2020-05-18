@@ -32,7 +32,7 @@ function useNodeData(node) {
             try {
                 const response = await fetch('http://localhost:4000/ControlNodo?' + new URLSearchParams({ id: node }))
 
-                if (!response.ok) throw new Error('Algo salio mal')
+                if (!response.ok) throw new Error('Algo salió mal')
 
                 const data = await response.json()
 
@@ -44,6 +44,7 @@ function useNodeData(node) {
                 setErrorMessage(error.message)
             }
         }
+        fetchData()
         const timer = setInterval(() => {
             fetchData()
         }, 5000)

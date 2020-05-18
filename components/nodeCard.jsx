@@ -32,19 +32,19 @@ function NodeCard(props) {
         const isEmpty = Name === '' || In === '' || Out === ''
         if (In % 1 === 0 && Out % 1 === 0 && !isEmpty) {
             if (props.selected.contacts.find(e => e.Name === newContact.Name)) {
-                alert('Este contactor ya existe')
+                alert('Este contactor ya existe.')
             } else {
                 const inRepeated = props.selected.contacts.find(e => e.In === newContact.In)
                 const outRepeated = props.selected.contacts.find(e => e.Out === newContact.Out)
                 if (inRepeated || outRepeated) {
-                    alert('No se puede repetir entrada/salida')
+                    alert('No se puede repetir entrada/salida.')
                 } else {
                     const newContactList = [...props.selected.contacts, newContact]
                     props.update({ ...props.selected, contacts: newContactList })
                 }
             }
         } else {
-            alert('Parametros invalidos')
+            alert('Parámetros invalidos.')
         }
     }
 

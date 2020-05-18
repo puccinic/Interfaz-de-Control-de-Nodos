@@ -9,6 +9,7 @@ import NodeCard from '../components/nodeCard'
 import Loading from '../components/loading'
 import {useNodesData} from '../customHooks'
 import Navbarmain from '../components/navbar'
+import Head from 'next/head'
 
 
 function ConfigPage() {
@@ -16,7 +17,7 @@ function ConfigPage() {
 
     function change(obj) {
         if (nodesData.find(e => e.dir === obj.dir)) {
-            alert("Esta dirección se encuentra ocupada")
+            alert("Esta dirección se encuentra ocupada.")
         } else {
             const newData = nodesData.map(e => {
                 if (e.id === obj.id) {
@@ -49,7 +50,7 @@ function ConfigPage() {
                       }
                 })  
 
-            if (!response.ok) throw new Error("Algo salio mal")
+            if (!response.ok) throw new Error("Algo salió mal")
             
             const data = await response.json()  
             alert(data)
@@ -64,6 +65,10 @@ function ConfigPage() {
     const nodesIDs = nodesData.map(e => e.id)
 
     return <Container>
+        <Head>
+            <title>Configuración UniGRID</title>
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
         <Navbarmain dir="Control" text="Volver">
             <FaDoorOpen className="iconovolver"/>
         </Navbarmain>
