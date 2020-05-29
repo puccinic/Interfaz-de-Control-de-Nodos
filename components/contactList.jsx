@@ -19,7 +19,8 @@ function Contact(props) {
 
     async function action() {
         try {
-            const response = await fetch('http://localhost:4000/ControlNodo',
+            const url = window.location.origin.slice(0,window.location.origin.length-5) + ':4000/ControlNodo'
+            const response = await fetch(url,
                 {
                     method: 'POST',
                     body: JSON.stringify({ ...props, value: !props.value }),

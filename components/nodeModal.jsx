@@ -25,7 +25,8 @@ function NodeModal({ id }) {
             <Row>
                 <Button className="mx-auto rowemerbutton" variant="danger" onClick={async () => {
                     try {
-                        const response = await fetch('http://localhost:4000/Emergencia',
+                        const url = window.location.origin.slice(0,window.location.origin.length-5) + ':4000/Emergencia'
+                        const response = await fetch(url,
                             {
                                 method: 'POST',
                                 body: JSON.stringify({ id: id }),

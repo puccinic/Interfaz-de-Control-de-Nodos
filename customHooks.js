@@ -7,7 +7,8 @@ function useNodesData() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:4000/Datos')
+                const url = window.location.origin.slice(0,window.location.origin.length-5) + ':4000/Datos'
+                const response = await fetch(url)
                 if (!response.ok) throw new Error("Algo salio mal")
 
                 const data = await response.json()
@@ -30,7 +31,8 @@ function useNodeData(node) {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('http://localhost:4000/ControlNodo?' + new URLSearchParams({ id: node }))
+                const url = window.location.origin.slice(0,window.location.origin.length-5) + ':4000/ControlNodo?' + new URLSearchParams({ id: node })
+                const response = await fetch(url)
 
                 if (!response.ok) throw new Error('Algo salió mal')
 

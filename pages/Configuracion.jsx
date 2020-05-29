@@ -41,7 +41,8 @@ function ConfigPage() {
 
     async function save() {
         try {
-            const response = await fetch('http://localhost:4000/Datos',
+            const url = window.location.origin.slice(0,window.location.origin.length-5) + ':4000/Datos'
+            const response = await fetch(url,
                 {
                     method: 'POST',
                     body: JSON.stringify(nodesData),
